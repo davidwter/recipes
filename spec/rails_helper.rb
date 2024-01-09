@@ -70,3 +70,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+def json
+  JSON.parse(response.body)
+end
