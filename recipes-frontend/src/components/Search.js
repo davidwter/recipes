@@ -1,5 +1,8 @@
 // src/components/Search.js
 import React from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 import axios from 'axios';
 
 const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
@@ -25,14 +28,21 @@ const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
 
   return (
     <div>
-      <input
-        type="text"
+      <TextField
+        label="Enter ingredients"
+        variant="outlined"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Enter ingredients, separated by commas"
+        placeholder="Separated by commas"
+        fullWidth
+        margin="normal"
       />
-      <button onClick={handleSearch}>Search</button>
-      <button onClick={handleClear}>Clear</button>
+      <Button variant="contained" color="primary" onClick={handleSearch}>
+        Search
+      </Button>
+      <Button variant="outlined" onClick={handleClear}>
+        Clear
+      </Button>
     </div>
   );
 };

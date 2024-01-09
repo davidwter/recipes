@@ -2,8 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
-const RecipeDetail = () => {
+
+
+const RecipeDetail = ({searchQuery}) => {
   const [recipe, setRecipe] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,23 +28,28 @@ const RecipeDetail = () => {
     fetchRecipe();
   }, [id]);
 
+  const isIngredientMatch = (ingredientName) => {
+    if (!searchQuery) return false;
+    const queryIngredients = searchQuery.split(',').map(ingredient => ingredient.trim().toLowerCase());
+    return queryIngredients.includes(ingredientName.toLowerCase());
+  };
+
+
   if (!recipe) return <div>Loading...</div>;
 
   return (
     <div>
-    <button onClick={() => navigate(-1)}>Back to Search</button>    
-      <h1>{recipe.title}</h1>
-      {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-      <h3>Ingrédients</h3>
-      {recipe.ingredients && (
-        <ul>
-          {recipe.ingredients.map((ingredient, index) => (
-            <li key={index}>
-              {ingredient.name} {}
-            </li>
-          ))}
-        </ul>
-      )}
+    <Button onClick={() => navigate(-1)} variant="contained" color="secondary">Back to Search</Button>    
+    <Typography variant="h4">{recipe.title}</Typography>
+      {recipe.image && <img src={recipe.image} alt={recipe.title} style={{ maxWidth: '100%' }} />}
+      <Typography variant="h6">Ingredients</Typography>
+      <List>
+        {recipe.ingredients.map((ingredient, index) => (
+          <ListItem key={index} style={isIngredientMatch(ingredient.name) ? { fontWeight: 'bold' } : {}}>
+            {ingredient.name}
+          </ListItem>
+        ))}
+      </List>
 
       <p>Temps de préparation : {recipe.prep_time}</p>
       <p>Temps de cuisson : {recipe.cook_time}</p>
