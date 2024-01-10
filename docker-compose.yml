@@ -1,31 +1,33 @@
-version: '3.8'
+version: '3'
 services:
-  web:
-    build: .
+  db:
+    image: postgres
     volumes:
-      - .:/usr/src/app
-      - bundle_cache:/usr/local/bundle
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: recipe_user
+      POSTGRES_PASSWORD: recipe_password
+      POSTGRES_DB: recipes
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./recipes-backend
+    command: rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - ./recipes-backend:/recipes-backend
     ports:
       - "3000:3000"
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgres://recipe_user:recipe_password@db:5432/recipes
+
   frontend:
     build: ./recipes-frontend
+    environment:
+      - PORT=3001
     volumes:
-      - ./recipes-frontend:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./recipes-frontend:/recipes-frontend
     ports:
       - "3001:3001"
-  db:
-    image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=recipe_user
-      - POSTGRES_PASSWORD=recipe_password
-      - POSTGRES_DB=recipes
-volumes:
-  bundle_cache:
-  postgres_data:
+    depends_on:
+      - backend

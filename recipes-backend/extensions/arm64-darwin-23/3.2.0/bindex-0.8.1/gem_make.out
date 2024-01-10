@@ -1,0 +1,19 @@
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/bindex-0.8.1/ext/skiptrace
+/Users/davidweinachter/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-87xlwg sitelibdir\=./.gem.20240110-17819-87xlwg clean
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-87xlwg sitelibdir\=./.gem.20240110-17819-87xlwg
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-87xlwg sitelibdir\=./.gem.20240110-17819-87xlwg install
+/opt/homebrew/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20240110-17819-87xlwg/skiptrace/internal
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-87xlwg sitelibdir\=./.gem.20240110-17819-87xlwg clean

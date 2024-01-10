@@ -1,0 +1,19 @@
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/stringio-3.1.0/ext/stringio
+/Users/davidweinachter/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-5o1np9 sitelibdir\=./.gem.20240110-17819-5o1np9 clean
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-5o1np9 sitelibdir\=./.gem.20240110-17819-5o1np9
+compiling stringio.c
+linking shared-object stringio.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-5o1np9 sitelibdir\=./.gem.20240110-17819-5o1np9 install
+/opt/homebrew/bin/ginstall -c -m 0755 stringio.bundle ./.gem.20240110-17819-5o1np9
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-5o1np9 sitelibdir\=./.gem.20240110-17819-5o1np9 clean

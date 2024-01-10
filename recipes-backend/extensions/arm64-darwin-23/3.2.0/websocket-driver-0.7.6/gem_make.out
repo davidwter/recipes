@@ -1,0 +1,19 @@
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/websocket-driver-0.7.6/ext/websocket-driver
+/Users/davidweinachter/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-21qprh sitelibdir\=./.gem.20240110-17819-21qprh clean
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-21qprh sitelibdir\=./.gem.20240110-17819-21qprh
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-21qprh sitelibdir\=./.gem.20240110-17819-21qprh install
+/opt/homebrew/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20240110-17819-21qprh
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-21qprh sitelibdir\=./.gem.20240110-17819-21qprh clean

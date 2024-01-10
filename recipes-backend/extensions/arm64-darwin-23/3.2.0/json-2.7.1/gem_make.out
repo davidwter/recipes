@@ -1,0 +1,16 @@
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/json-2.7.1/ext/json
+/Users/davidweinachter/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-tbukcj sitelibdir\=./.gem.20240110-17819-tbukcj clean
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-tbukcj sitelibdir\=./.gem.20240110-17819-tbukcj
+make: Nothing to be done for `all'.
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-tbukcj sitelibdir\=./.gem.20240110-17819-tbukcj install
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-tbukcj sitelibdir\=./.gem.20240110-17819-tbukcj clean

@@ -1,0 +1,19 @@
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/racc-1.7.3/ext/racc/cparse
+/Users/davidweinachter/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-3y3ne2 sitelibdir\=./.gem.20240110-17819-3y3ne2 clean
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-3y3ne2 sitelibdir\=./.gem.20240110-17819-3y3ne2
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-3y3ne2 sitelibdir\=./.gem.20240110-17819-3y3ne2 install
+/opt/homebrew/bin/ginstall -c -m 0755 cparse.bundle ./.gem.20240110-17819-3y3ne2/racc
+
+current directory: /Users/davidweinachter/dev/Recipes/recipes-backend/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240110-17819-3y3ne2 sitelibdir\=./.gem.20240110-17819-3y3ne2 clean

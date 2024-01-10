@@ -1,20 +1,20 @@
 # Use Node.js base image
-FROM node:14
+FROM node:latest
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set the working directory in the container
+WORKDIR /recipes-frontend
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy package.json and package-lock.json (if available)
+COPY package*.json /recipes-frontend/
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the code
-COPY . .
+# Copy the rest of your app's source code
+COPY . /recipes-frontend
 
 # Expose the port the app runs on
 EXPOSE 3001
 
-# Start the application
+# Start the app
 CMD ["npm", "start"]
