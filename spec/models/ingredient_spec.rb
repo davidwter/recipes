@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
-   # Test for validations
-   describe 'validations' do
+  # Test for validations
+  describe 'validations' do
     it 'is valid with valid attributes' do
       ingredient = Ingredient.new(name: 'Tomato')
       expect(ingredient).to be_valid

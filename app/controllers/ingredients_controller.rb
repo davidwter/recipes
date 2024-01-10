@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 # app/controllers/ingredients_controller.rb
+# Purpose: Controller for the ingredients resource.
+
 class IngredientsController < ApplicationController
   def index
     @ingredients = Ingredient.all
