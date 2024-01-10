@@ -1,9 +1,11 @@
 // src/components/Search.js
 import React from 'react';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { Button, TextField, Grid, Paper, Typography } from '@mui/material';
+
 
 import axios from 'axios';
+
+  
 
 const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
   const handleSearch = async () => {
@@ -27,23 +29,34 @@ const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
   };
 
   return (
-    <div>
-      <TextField
-        label="Enter ingredients"
-        variant="outlined"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Separated by commas"
-        fullWidth
-        margin="normal"
-      />
-      <Button variant="contained" color="primary" onClick={handleSearch}>
-        Search
-      </Button>
-      <Button variant="outlined" onClick={handleClear}>
-        Clear
-      </Button>
-    </div>
+    <Paper style={{ padding: '2rem', margin: '2rem' }}> 
+        <Typography variant="h6" gutterBottom>Quels sont vos ingrédients ?</Typography>
+        <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={8}>
+                <TextField
+                    label="Ingrédients"
+                    variant="outlined"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Séparés par une virgule"
+                    fullWidth
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <Button variant="contained" color="primary" onClick={handleSearch} style={{ marginRight: '1rem' }}>
+                    Rechercher
+                </Button>
+                <Button variant="outlined" onClick={handleClear}>
+                    Effacer
+                </Button>
+            </Grid>
+        </Grid>
+        
+    </Paper>
+
+
+   
   );
 };
 

@@ -1,15 +1,21 @@
-// src/components/RecipeDetail.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import {
+  Button,
+  Typography,
+  List,
+  ListItem,
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Box,
+  Chip,
+} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-
-
-const RecipeDetail = ({searchQuery}) => {
+const RecipeDetail = ({ searchQuery }) => {
   const [recipe, setRecipe] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,7 +24,6 @@ const RecipeDetail = ({searchQuery}) => {
     const fetchRecipe = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/recipes/${id}`);
-        console.log(response.data);
         setRecipe(response.data);
       } catch (error) {
         console.error('Error fetching recipe details', error);
@@ -31,34 +36,64 @@ const RecipeDetail = ({searchQuery}) => {
   const isIngredientMatch = (ingredientName) => {
     if (!searchQuery) return false;
     const queryIngredients = searchQuery.split(',').map(ingredient => ingredient.trim().toLowerCase());
-    return queryIngredients.includes(ingredientName.toLowerCase());
+    return queryIngredients.some(queryIngredient => ingredientName.toLowerCase().includes(queryIngredient));
   };
-
 
   if (!recipe) return <div>Loading...</div>;
 
   return (
-    <div>
-    <Button onClick={() => navigate(-1)} variant="contained" color="secondary">Back to Search</Button>    
-    <Typography variant="h4">{recipe.title}</Typography>
-      {recipe.image && <img src={recipe.image} alt={recipe.title} style={{ maxWidth: '100%' }} />}
-      <Typography variant="h6">Ingredients</Typography>
-      <List>
-        {recipe.ingredients.map((ingredient, index) => (
-          <ListItem key={index} style={isIngredientMatch(ingredient.name) ? { fontWeight: 'bold' } : {}}>
-            {ingredient.name}
-          </ListItem>
-        ))}
-      </List>
-
-      <p>Temps de préparation : {recipe.prep_time}</p>
-      <p>Temps de cuisson : {recipe.cook_time}</p>
-      <p>Temps total : {recipe.total_time}</p>
-      <p>Difficulté : {recipe.difficulty}</p>
-      <p>Note : {recipe.rate}</p>
-      <p>Nombre de commentaires : {recipe.nb_comments}</p>
-      <p>Autheur : {recipe.author}</p>
-    </div>
+    <Container maxWidth="md">
+      <Box my={4}>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate(-1)}
+          variant="outlined"
+          color="primary"
+        >
+          Retour à la recherche
+        </Button>
+      </Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h3" component="h1" gutterBottom>
+            {recipe.title}
+          </Typography>
+        </Grid>
+        <Grid item md={6} xs={12}>
+          {recipe.image && (
+            <img src={recipe.image} alt={recipe.title} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
+          )}
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <Typography variant="h6" gutterBottom>Ingrédients</Typography>
+          <List>
+            {recipe.ingredients.map((ingredient, index) => (
+              <ListItem key={index}>
+                <Chip
+                  label={ingredient.name}
+                  color={isIngredientMatch(ingredient.name) ? "primary" : "default"}
+                  variant="outlined"
+                  style={{ marginRight: '4px' }}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+        <Grid item xs={12}>
+          <Card variant="outlined">
+            <CardContent>
+              <Typography variant="body1">Temps de préparation : {recipe.prep_time}</Typography>
+              <Typography variant="body1">Temps de cuisson : {recipe.cook_time}</Typography>
+              <Typography variant="body1">Temps total : {recipe.total_time}</Typography>
+              <Typography variant="body1">Difficulté : {recipe.difficulty}</Typography>
+              <Typography variant="body1">Note : {recipe.rate}</Typography>
+              <Typography variant="body1">Nombre de commentaires : {recipe.nb_comments}</Typography>
+              <Typography variant="body1">Auteur : {recipe.author}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

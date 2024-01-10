@@ -1,19 +1,14 @@
 // src/components/RecipeList.js
 import React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import {  Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+
 
 import { Link } from 'react-router-dom';
 
 const RecipeList = ({ recipes }) => {
   return (
-    <TableContainer component={Paper}>
-        <Table>
+    <TableContainer component={Paper} elevation={3}>
+        <Table aria-label="simple table">
             <TableHead>
                 <TableRow>
                     <TableCell>
@@ -29,8 +24,8 @@ const RecipeList = ({ recipes }) => {
             </TableHead>
             <TableBody>
                 {recipes.map((recipe) => (
-                    <TableRow key={recipe.id}>
-                        <TableCell><Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link></TableCell>
+                    <TableRow key={recipe.id} hover>
+                        <TableCell component="th" scope="row"><Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link></TableCell>
                         <TableCell>{recipe.matching_ingredients_count}</TableCell>
                         <TableCell>{recipe.matching_ingredients.join(', ')}</TableCell>
                     </TableRow>
@@ -38,6 +33,7 @@ const RecipeList = ({ recipes }) => {
                 </TableBody>
         </Table>
     </TableContainer>
+
   );
 };
 
