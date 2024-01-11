@@ -5,6 +5,7 @@ import { Button, TextField, Grid, Paper, Typography } from '@mui/material';
 
 import axios from 'axios';
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
   
 
 const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
@@ -15,7 +16,7 @@ const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/recipes/search?ingredients=${searchQuery}`);
+      const response = await axios.get(`${apiBaseUrl}/recipes/search?ingredients=${searchQuery}`);
       onSearch(response.data);
     } catch (error) {
       console.error('Error fetching recipes', error);

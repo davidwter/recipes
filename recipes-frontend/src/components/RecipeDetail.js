@@ -15,6 +15,8 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
+
 const RecipeDetail = ({ searchQuery }) => {
   const [recipe, setRecipe] = useState(null);
   const { id } = useParams();
@@ -23,7 +25,7 @@ const RecipeDetail = ({ searchQuery }) => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/recipes/${id}`);
+        const response = await axios.get(`${apiBaseUrl}/recipes/${id}`);
         setRecipe(response.data);
       } catch (error) {
         console.error('Error fetching recipe details', error);
