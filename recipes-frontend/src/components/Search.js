@@ -1,26 +1,55 @@
 // src/components/Search.js
-import React from 'react';
-import { Button, TextField, Grid, Paper, Typography } from '@mui/material';
+import React, {useState} from 'react';
+import { Button, TextField, Grid, Paper, Typography,Snackbar, Alert, CircularProgress } from '@mui/material';
+
+
 
 
 import axios from 'axios';
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
-  
+
+
 
 const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) {
-      alert('Please enter some ingredients.');
+  const [isSearching, setIsSearching] = useState(false);
+
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('info');
+
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
       return;
     }
+    setOpenSnackbar(false);
+  };
+
+  const showAlert = (message, severity = 'info') => {
+    setSnackbarMessage(message);
+    setSnackbarSeverity(severity);
+    setOpenSnackbar(true);
+  };
+
+  
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) {
+      showAlert('Merci de saisir quelques ingrédients', 'warning');
+      return;
+    }
+
+    setIsSearching(true); // Start the loading indicator
 
     try {
       const response = await axios.get(`${apiBaseUrl}/recipes/search?ingredients=${searchQuery}`);
       onSearch(response.data);
+      setIsSearching(false); // Stop the loading indicator once data is fetched
     } catch (error) {
       console.error('Error fetching recipes', error);
-      alert('An error occurred while fetching recipes.');
+      showAlert('Une erreur est survenue pendant la récupération des recettes', 'error');
+      setIsSearching(false); // Stop the loading indicator in case of an error
     }
   };
 
@@ -53,7 +82,17 @@ const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
                 </Button>
             </Grid>
         </Grid>
-        
+        {isSearching && (
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <CircularProgress />
+      </div>
+    )}
+        <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+
     </Paper>
 
 

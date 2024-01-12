@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'recipes', to: 'recipes#index'
   get 'recipes/search', to: 'recipes#search'
   get 'recipes/:id', to: 'recipes#show'
+  get 'ingredients', to: 'ingredients#index'
+  
 
   # Defines the root path route ("/")
   # root "posts#index"
