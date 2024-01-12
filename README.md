@@ -20,6 +20,10 @@ The data model for the Recipes Project is based on three primary entities: `reci
 ## Where to test the application
 
 The application is deployed on AWS EC2 and is accessible at [http://ec2-3-120-248-186.eu-central-1.compute.amazonaws.com:3001/](http://ec2-3-120-248-186.eu-central-1.compute.amazonaws.com:3001/).
+![CleanShot 2024-01-12 at 19 00 46](https://github.com/davidwter/recipes/assets/9658911/0597fcd8-c8b3-4770-974c-f18a057cbc7c)
+![CleanShot 2024-01-12 at 19 01 21](https://github.com/davidwter/recipes/assets/9658911/66154625-91fe-496c-907f-ab56970f3cc6)
+
+
 
 ## Installation and Setup
 
