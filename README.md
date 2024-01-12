@@ -14,24 +14,8 @@ This project is a web application designed to help users find and view recipes. 
 
 The data model for the Recipes Project is based on three primary entities: `recipes`, `ingredients`, and `recipe_ingredients`. Below is a representation of the database schema:
 
-+----------------+           +---------------------+           +-------------+
-|  ingredients   |           |  recipe_ingredients |           |   recipes   |
-+----------------+           +---------------------+           +-------------+
-| id             |<--------->| ingredient_id       |           | id          |
-| name           |           | recipe_id           |<--------->| title       |
-| created_at     |           | quantity            |           | instructions|
-| updated_at     |           | created_at          |           | prep_time   |
-+----------------+           | updated_at          |           | cook_time   |
-                             +---------------------+           | total_time  |
-                                                               | difficulty  |
-                                                               | rate        |
-                                                               | people_qty  |
-                                                               | image       |
-                                                               | author      |
-                                                               | nb_comments |
-                                                               | created_at  |
-                                                               | updated_at  |
-                                                               +-------------+
+![CleanShot 2024-01-12 at 18 59 16](https://github.com/davidwter/recipes/assets/9658911/e69da8d4-9abd-47fb-969b-0b3be15da09c)
+
 
 ## Where to test the application
 
