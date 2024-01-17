@@ -1,5 +1,5 @@
 // src/components/SearchPage.js
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Search from './Search';
@@ -9,6 +9,15 @@ const SearchPage = ({ recipes, setRecipes, searchQuery, setSearchQuery }) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const currentPage = parseInt(queryParams.get('page') || 1, 10);
+  const [totalPages, setTotalPages] = useState(0);
+
+  useEffect(() => {
+    const storedTotalPages = sessionStorage.getItem('totalPages');
+  if (storedTotalPages) {
+    setTotalPages(parseInt(storedTotalPages, 10));
+  }
+}, []);
+
 
   return (
     <div>
@@ -18,7 +27,7 @@ const SearchPage = ({ recipes, setRecipes, searchQuery, setSearchQuery }) => {
       setSearchQuery={setSearchQuery} 
       currentPage= {currentPage}
       />
-      <RecipeList recipes={recipes} />
+      <RecipeList recipes={recipes} currentPage={currentPage} totalPages={totalPages}/>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate,useLocation } from 'react-router-dom';
 import {
   Button,
   Typography,
@@ -15,12 +15,20 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
 
 const RecipeDetail = ({ searchQuery }) => {
   const [recipe, setRecipe] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBackToSearch = () => {
+    // You can pass state back to the search page if needed
+    navigate('/', { state: { searchQuery, page: location.state?.page } });
+  };
+
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -48,7 +56,7 @@ const RecipeDetail = ({ searchQuery }) => {
       <Box my={4}>
         <Button
           startIcon={<ArrowBackIcon />}
-          onClick={() => navigate(-1)}
+          onClick={handleBackToSearch}
           variant="outlined"
           color="primary"
         >

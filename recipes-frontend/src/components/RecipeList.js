@@ -12,7 +12,7 @@ import {
 
 import { Link } from "react-router-dom";
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = ({ recipes, currentPage }) => {
   return (
     <TableContainer component={Paper} elevation={3}>
       <Table aria-label="simple table">
@@ -27,7 +27,7 @@ const RecipeList = ({ recipes }) => {
           {recipes.map((recipe) => (
             <TableRow key={recipe.id} hover>
               <TableCell component="th" scope="row">
-                <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
+                <Link to={`/recipe/${recipe.id}?page=${currentPage}`}>{recipe.name}</Link>
               </TableCell>
               <TableCell>{recipe.matching_ingredients_count}</TableCell>
               <TableCell>{recipe.matching_ingredients.join(", ")}</TableCell>

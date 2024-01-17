@@ -1,5 +1,5 @@
 // src/components/Search.js
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import {
   Button,
   TextField,
@@ -15,6 +15,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 
 import axios from "axios";
+
+
 
 const apiBaseUrl =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
@@ -62,6 +64,11 @@ const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
       });
       onSearch(response.data.recipes);
       setTotalPages(response.data.total_pages);
+      sessionStorage.setItem('totalPages', response.data.total_pages);
+      console.log('Total pages (after setTotalPages call):', totalPages); // Debugging line
+      
+    
+
       //setCurrentPage(response.data.current_page);
       setIsSearching(false); // Stop the loading indicator once data is fetched
       if (isNewSearch) {
@@ -89,7 +96,21 @@ const Search = ({ onSearch, searchQuery, setSearchQuery }) => {
   const handlePageChange = (event, page) => {
       navigate(`?page=${page}`);
       handleSearch(page);
+      sessionStorage.setItem('currentPage', page);
     }
+
+    useEffect(() => {
+      const storedTotalPages = sessionStorage.getItem('totalPages');
+      if (storedTotalPages) {
+        setTotalPages(parseInt(storedTotalPages, 10));
+      }
+    }, [currentPage]); 
+
+    
+   
+    console.log('Total pages (before render):', totalPages); // Debugging line
+
+
 
   return (
     <Paper sx={{ padding: "2rem", margin: "2rem" }}>
