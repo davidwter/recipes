@@ -62,7 +62,7 @@ The application is deployed on AWS EC2 and is accessible at [http://ec2-3-120-24
 
 ## Usage
 
-- The application is accessible on port 3001 and is already deployed at http://ec2-18-197-157-217.eu-central-1.compute.amazonaws.com:3001/.
+- The application is accessible on port 3001 and is already deployed at [http://ec2-18-197-157-217.eu-central-1.compute.amazonaws.com:3001](http://ec2-18-197-157-217.eu-central-1.compute.amazonaws.com:3001)/.
 - The API runs on port 3000.
 
 ## Testing
