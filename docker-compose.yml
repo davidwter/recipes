@@ -23,6 +23,10 @@ services:
 
   frontend:
     build: ./recipes-frontend
+    command: npm start
+    volumes:
+      - ./recipes-frontend:/recipes-frontend
+      - /recipes-frontend/node_modules
     environment:
       - PORT=3001
       - REACT_APP_API_BASE_URL=http://localhost:3000

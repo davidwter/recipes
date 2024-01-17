@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
   # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
-    # Initializes a new recipe instance with the provided parameters. 
+    # Initializes a new recipe instance with the provided parameters.
     # This is part of the standard create action in Rails for processing form data for new records.
     if @recipe.save
       render json: @recipe, status: :created
@@ -37,14 +37,24 @@ class RecipesController < ApplicationController
   def search
     if params[:ingredients].present?
       ingredients = parse_ingredients(params[:ingredients])
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
       # Processes the search parameter to extract individual ingredients.
-      @recipes = fetch_matching_recipes(ingredients)
+      @recipes = fetch_matching_recipes(ingredients).page(page).per(per_page)
       # Retrieves recipes matching the given ingredients.
-      render json: format_recipes_json(@recipes, ingredients)
-      # Formats and sends the matched recipes as JSON, including the count of matching ingredients.
+      render json: {
+        recipes: format_recipes_json(@recipes, ingredients),
+        total_pages: @recipes.total_pages,
+        current_page: @recipes.current_page
+      }
     else
-      render json: Recipe.limit(10)
-      # In the absence of search parameters, returns a limited set of recipes.
+      # Handle default case with pagination
+      @recipes = Recipe.page(params[:page]).per(10)
+      render json: {
+        recipes: format_recipes_json(@recipes, ingredients),
+        total_pages: @recipes.total_pages,
+        current_page: @recipes.current_page
+      }
     end
   end
 
@@ -114,8 +124,8 @@ class RecipesController < ApplicationController
       id: recipe.id,
       name: recipe.title,
       matching_ingredients_count: recipe.matching_ingredients_count,
-      matching_ingredients: matching_ingredients
-      # The JSON structure includes essential recipe details along with the count and names of ingredients 
+      matching_ingredients:
+      # The JSON structure includes essential recipe details along with the count and names of ingredients
       # that matched the search criteria, providing a comprehensive and user-friendly data representation.
     }
   end

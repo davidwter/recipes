@@ -17,6 +17,7 @@ gem 'redis', '>= 4.0.1'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootsnap', require: false
 gem 'pg', '~> 1.5' # Make sure pg gem is available in all environments
+gem 'kaminari'
 
 group :development, :test do
   gem 'debug', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
