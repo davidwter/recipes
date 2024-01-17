@@ -4,6 +4,7 @@ ruby '3.2.2'
 
 gem 'rack-cors', require: 'rack/cors'
 gem 'ruby-progressbar'
+gem 'graphql'
 
 gem 'rails', '~> 7.1.2'
 gem 'sprockets-rails'
@@ -24,6 +25,8 @@ end
 
 group :development do
   gem 'web-console'
+  gem 'graphiql-rails'
+
 end
 
 group :development, :test do
@@ -41,3 +44,4 @@ group :test do
 end
 
 gem 'dockerfile-rails', '>= 1.6', group: :development
+gem "graphiql-rails", group: :development
